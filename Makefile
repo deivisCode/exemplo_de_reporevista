@@ -9,6 +9,6 @@ rula: revistas/$(numero)/documento.tex
 	latexmk revistas/$(numero)/documento.tex
 
 limpa:
-	rm -rf .out .aux
+	rm -rf .pdf/* .aux/*
 
 .PHONY: rula limpa
