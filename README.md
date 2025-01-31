@@ -1,4 +1,4 @@
-### ESTRUTURA DE EXEMPLO PARA O PROXECTO
+# ESTRUTURA DE EXEMPLO PARA O PROXECTO
 
 Este é un exemplo para que o proxecto se poida manter, compartir e expandir
 facilmente. A estrutura é a seguinte:
@@ -14,7 +14,7 @@ facilmente. A estrutura é a seguinte:
 │
 └── revistas
    ├── 001
-   │  ├── documento.tex
+   │  ├── revista_001.tex
    │  ├── imaxes
    │  │  └── black_hole.jpg
    │  └── roberto_bolon_HISTORIA_DA_CIENCIA.tex
@@ -53,7 +53,7 @@ da revista. Quenes queiran tocar ese tema, só se teñen que preocupar por esto.
 ## REVISTAS
 
 Cada 'revista' ten o seu propio diretorio, por exemplo `./revistas/001/*`
-Dentro dese diretorio, estará o arquivo 'documento.tex' que será da forma:
+Dentro dese diretorio, estará o arquivo 'revista_001.tex' que será da forma:
 
 ```latex
 \documentclass{revista}
@@ -66,9 +66,12 @@ Dentro dese diretorio, estará o arquivo 'documento.tex' que será da forma:
 \end{document}
 ```
 
+Pode ser que pareza redundante chamalo `./revistas/001/revista_001.tex` pero a verdade é
+que resulta cómodo. É inxectivo e bastante modular.
+
 ## ARTIGOS DA XENTE
 
-Gardanse no mesmo diretorio que o `document.tex` correspondente.
+Gardanse no mesmo diretorio que o `revista_001.tex` correspondente.
 Así é facil importalos con `inputs`. Estos artigos son os que deberían facer
 os editores (ou como se chamen). Ahí irá o texto formateado, con imaxes, citas,
 etc. Facendoo así será máis facil manter o codigo (creeme we). Véxase o arquivo
@@ -82,18 +85,23 @@ correspondente. Nos artigos editados só hai que facer:
 \includegraphics{./revistas/001/imaxes/imaxebonita.png}
 ```
 
-### COMPILACION
+## COMPILACION
 
 É moi sinxelo. no diretorio raíz hai unha latexmkrc que sirve como
 configuración con unhas opcións 'sanas'. Para compilar unha revista só hai que
 facer na terminal:
 
 ```bash
-latexmk ./revistas/001/documento.tex
+latexmk ./revistas/001/revista_001.tex
 ```
+Esto debería funcionar tamén en windows con Powershell 5 ou 7 (creo)
 
 Quenes usen Overleaf ou parralladas similares non deberían ter problema,
 xa que usan latexmk en secreto asique debería ir ben.
+
+Por defecto, ca configuración de latexmk adxunta, ao compilar unha revista
+o PDF que se xere gárdase no diretorio `./pdf/` e os arquivos auxiliares
+en `./aux/`. Estos diretorios creanse solos e son ignorados por git por defecto
 
 Tamén se adxunta unha Makefile para os que usen Linux e similares. É posible facer
 ```bash
