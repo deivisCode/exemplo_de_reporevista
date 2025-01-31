@@ -2,7 +2,7 @@
 
 Este é un exemplo para que o proxecto se poida manter, compartir e expandir
 facilmente. A estrutura é a seguinte:
-
+```
 .
 ├── revista.cls
 │
@@ -26,6 +26,7 @@ facilmente. A estrutura é a seguinte:
    │  └── ...
    └── 005
       └── ...
+```
 
 Na raiz do proxecto estarán os arquivos comúns (usados por todas as revistas,
 como a bibliografia e a clase), de mantemento e de configuración.
@@ -51,7 +52,7 @@ da revista. Quenes queiran tocar ese tema, só se teñen que preocupar por esto.
 
 ## REVISTAS
 
-Cada 'revista' ten o seu propio diretorio, por exemplo ./revistas/001/*
+Cada 'revista' ten o seu propio diretorio, por exemplo `./revistas/001/*`
 Dentro dese diretorio, estará o arquivo 'documento.tex' que será da forma:
 
 ```latex
@@ -78,7 +79,7 @@ de Roberto Bolón.
 Cada revista ten as imaxes gardadas nun subcartafol ao lado do documento
 correspondente. Nos artigos editados só hai que facer:
 ```latex
-\includegraphics{./revista/001/imaxebonita.png}
+\includegraphics{./revistas/001/imaxes/imaxebonita.png}
 ```
 
 ### COMPILACION
