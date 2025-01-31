@@ -9,4 +9,3 @@ $pdf_mode = 4;
 
 # O comando específico de lualatex
 $lualatex = "lualatex --file-line-error --interaction=nonstopmode --shell-escape %O %S";
-
