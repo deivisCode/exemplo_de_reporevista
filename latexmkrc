@@ -1,6 +1,3 @@
-# Arquivo de configuracion para latexmk. Hai que poñer esto nalgún dos sitios
-# recoñecidos, como ~/.config/latexmk/latexmkrc
-
 # Isto é pa que as cousas xeradas se garden en carpetas aparte e así non encher
 # o diretorio actual con 5234 ficheiros auxiliares.
 $aux_dir = '.aux'; # para os auxiliares
@@ -12,4 +9,3 @@ $pdf_mode = 4;
 
 # O comando específico de lualatex
 $lualatex = "lualatex --file-line-error --interaction=nonstopmode --shell-escape %O %S";
-
