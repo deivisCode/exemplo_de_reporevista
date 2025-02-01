@@ -5,8 +5,8 @@
 SHELL := bash
 .DEFAULT_GOAL := rula
 
-rula: revistas/$(numero)/documento.tex
-	latexmk revistas/$(numero)/documento.tex
+rula: revistas/$(numero)/revista_$(numero).tex
+	latexmk revistas/$(numero)/revista_$(numero).tex
 
 limpa:
 	rm -rf .pdf/* .aux/*
