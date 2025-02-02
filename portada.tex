@@ -1,0 +1,37 @@
+\begin{titlepage}
+\pagestyle{empty}
+
+% 'remember picture' e 'overley' pa usar logo 'current page'
+\begin{tikzpicture}[remember picture, overlay]
+
+% FONDO AZUL CA COR TIPICA DA USC
+\fill[azulUSC] (current page.south west) rectangle (current page.north east);
+
+% REVISTA DE FISICA
+\node
+    [
+        left, % colocalo á esquera da ancla (a que se especifica con 'at' logo)
+        fill=white!30!azulUSC,
+        minimum width=0.7*\paperwidth,
+        minimum height=3cm,
+    ]
+        at ($(current page.north east)+(0,-5)$)
+    {
+        {\Huge \textsc{REVISTA DE FÍSICA}}
+    };
+
+% DATA
+\node
+    [
+        right,
+        fill=white!30!azulUSC,
+        minimum width=0.3*\paperwidth,
+        minimum height=1cm,
+    ]
+        at ($(current page.south west)+(0,+2)$)
+    {
+        {\large \textsc{\today}}
+    };
+
+\end{tikzpicture}
+\end{titlepage}

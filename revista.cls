@@ -25,8 +25,13 @@
 ]{biblatex}
 \addbibresource{bibliografia.bib}
 
-% cores
+% Cores
 \RequirePackage{xcolor}
+\definecolor{azulUSC}{HTML}{000068}
+
+% TikZ para os gráficos
+\RequirePackage{tikz}
+\usetikzlibrary{calc} % para facer calculos cas posicions
 
 \RequirePackage[
 % XERAL ---------------------------------------------------------
