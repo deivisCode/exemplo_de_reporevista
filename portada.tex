@@ -4,16 +4,44 @@
 
 \RequirePackage[no-math]{fontspec}
 \newfontfamily\FonteTitulo[
-    Path      = ./fontes/qualitype/,
+    Path      = ./fontes/QualiType/,
     Extension = .otf,
     BoldFont  = *-Bold,
 ]{QTBengal}
+\newfontfamily\FonteInfo[
+    Path      = ./fontes/LatinModernMono/,
+    Extension = .otf,
+]{lmmono10-regular}
+\setmainfont[
+    Path           = ./fontes/CMUserif/,
+    Extension      = .ttf,
+    ItalicFont     = cmunti.ttf,
+    BoldFont       = cmunbx.ttf,
+    BoldItalicFont = cmunbi.ttf,
+]{cmunrm}
+
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc} % para facer calculos cas posicions
+\usepackage{tcolorbox}
+\usepackage{graphicx}
+\usepackage[
+    paper       = a4paper, % tamaño do papel
+    top         = 0mm,     % marxe superior
+    left        = 0mm,     % marxe esquerdo
+    right       = 0mm,     % marxe dereito
+    bottom      = 0mm,     % marxe inferior
+    nomarginpar = true,    % desactivar notas no marxe (tamaño 0)
+    nohead      = true,    % desactivar o encabezado
+    nofoot      = true,    % desactivar o pe de paxina
+    showframe,             % mostra estructura
+]{geometry}
 
 \setlength\parindent{0pt}
 % :FACER: facer esto robusto
 \renewcommand*{\baselinestretch}{0} % interlineado global
 
-% :FACER: numero e data en monoespaciado
+% Variedade de macros pa facilitarnos a vida logo
 \makeatletter
 
 % NUMERO
@@ -29,55 +57,41 @@
 \newcommand{\imprimeNomePrimeiroArticulo}{\@NomePrimeiroArticulo}
 
 % TITULO REVISTA
-\def\imprimeTituloRevista{A voz da Física}
+\newcommand{\imprimeTituloRevista}{A voz da Física}
+
+% RUTA PARA A IMAXE DA PORTADA
+\def\ImaxePortada#1{\def\@ImaxePortada{#1}}
+\newcommand{\imprimeImaxePortada}{\@ImaxePortada}
+
+% esto e pa logo poder cambiar algo a posicion do texto do primeiro articulo
+\def\AnclaxePrimeiroArticulo#1{\def\@AnclaxePrimeiroArticulo{#1}}
+\newcommand{\imprimeAnclaxePrimeiroArticulo}{\@AnclaxePrimeiroArticulo}
+
+\def\aQueLadoDoAnclaxePrimeiroArticulo#1{\def\@aQueLadoDoAnclaxePrimeiroArticulo{#1}}
+\newcommand{\imprimeAQueLadoDoAnclaxePrimeiroArticulo}{\@aQueLadoDoAnclaxePrimeiroArticulo}
+
+\def\AnchoPrimeiroArticulo#1{\def\@AnchoPrimeiroArticulo{#1}}
+\newcommand{\imprimeAnchoPrimeiroArticulo}{\@AnchoPrimeiroArticulo}
 
 \makeatother
 
 % Pa colorear o primeiro catacter de algo
-% \coloreacolocter{color}{texto}
+% \coloreacaracter{color}{texto}
 \newcommand{\coloreacaracter}[2]{%
     {\color{#1}\directlua{tex.sprint(unicode.utf8.sub('#2',1,1))}}%
     \directlua{tex.sprint(unicode.utf8.sub('#2',2,-1))}%
 }
 
-
-% Cores
-\usepackage{xcolor}
-\definecolor{resalte}{HTML}{ff0000}
-
-% TikZ para os gráficos
-\usepackage{tikz}
-\usetikzlibrary{calc} % para facer calculos cas posicions
-\usepackage{tcolorbox}
-
-\usepackage[
-    paper          = a4paper, % tamaño do papel
-    top            = 0mm,     % marxe superior
-    left           = 0mm,     % marxe esquerdo
-    right          = 0mm,     % marxe dereito
-    bottom         = 0mm,     % marxe inferior
-    nomarginpar    = true,    % desactivar notas no marxe (tamaño 0)
-    nohead         = true,    % desactivar o encabezado
-    nofoot         = true,    % desactivar o pe de paxina
-    % showframe,  % mostra estructura
-    % showcrop,   % mostrar tamaño útil (ver opcions layout=xxx)
-    % pass        % desactivar todo excepto showframe
-]{geometry}
-
-% \usepackage{graphicx}
-
-
-% En principio lo que buscamos es una portada llamativa pero no excesivamente
-% cargada, con una foto en medio pero rodeada con márgenes, que contengan el
-% título de la revista, la fecha (mes y año), el número de la revista, el logo de
-% la revista, el logo de la USC, y el nombre del primer artículo. La tipografía y
-% márgenes se dejará a la imaginación de los autores, así como la colocación de
-% cada objeto en la portada. El color dependerá de la foto, si queréis podéis
-% hacer alguna prueba.
+% SE QUEREMOS RETOCAR ALGO, HAI QUE FACELO NOS SEGUINTES COMANDOS
 
 \NumeroRevista{250}
 \DataRevista{Febreiro do 2025}
-\NomePrimeiroArticulo{Superconductividade e Superfluidos}
+\NomePrimeiroArticulo{Entrevista a Marie Curie}
+\ImaxePortada{./black_hole.jpg}
+\AnclaxePrimeiroArticulo{west}
+\aQueLadoDoAnclaxePrimeiroArticulo{right}
+\AnchoPrimeiroArticulo{0.5\linewidth}
+\definecolor{resalte}{HTML}{ff0000}
 
 \begin{document}
 % Titulo da revista: \imprimeTituloRevista \\
@@ -122,7 +136,7 @@
     boxrule = 0pt,
     sharp corners,
 ]
-\color{white}{\texttt{\imprimeNumeroRevista\hfill\imprimeDataRevista}}%
+\color{white}{\FonteInfo\imprimeNumeroRevista\hfill\imprimeDataRevista}%
 \end{tcolorbox}
 
 % IMAXE DE CADA REVISTA
@@ -130,7 +144,7 @@
 \bgroup
 \nointerlineskip
 \begin{picture}(\textwidth,\textwidth)%
-\put(0,0){\hbox{\includegraphics[width=\textwidth]{./black_hole.jpg}}}
+\put(0,0){\hbox{\includegraphics[width=\textwidth]{\imprimeImaxePortada}}}
 \end{picture}
 \egroup
 
@@ -138,13 +152,16 @@
 % artigos
 \begin{tikzpicture}[remember picture,overlay]
     \node
-    [anchor=south west,inner sep=0pt]
-    at ($(current page.west)$)
+    [
+        \imprimeAQueLadoDoAnclaxePrimeiroArticulo, % a qué lado da anclaxe queremos poñer o nodo
+        inner sep=0pt
+    ]
+    at ($(current page.\imprimeAnclaxePrimeiroArticulo)$) % onde anclamos o nodo
     {%
-        \begin{minipage}{0.5\linewidth}
+        \begin{minipage}{\imprimeAnchoPrimeiroArticulo}
             \begin{tcolorbox}[
                     boxrule     = 0pt,
-                    opacityback = 0.5,
+                    opacityback = 0.6,
                     standard jigsaw,
                     sharp corners,
                 ]
