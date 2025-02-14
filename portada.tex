@@ -1,37 +1,157 @@
-\begin{titlepage}
-\pagestyle{empty}
 
-% 'remember picture' e 'overley' pa usar logo 'current page'
-\begin{tikzpicture}[remember picture, overlay]
+\documentclass[12pt,a4paper]{article}
+% \usepackage{lua-visual-debug}
 
-% FONDO AZUL CA COR TIPICA DA USC
-\fill[azulUSC] (current page.south west) rectangle (current page.north east);
+\RequirePackage[no-math]{fontspec}
+\newfontfamily\FonteTitulo[
+    Path      = ./fontes/qualitype/,
+    Extension = .otf,
+    BoldFont  = *-Bold,
+]{QTBengal}
 
-% REVISTA DE FISICA
-\node
-    [
-        left, % colocalo á esquera da ancla (a que se especifica con 'at' logo)
-        fill=white!30!azulUSC,
-        minimum width=0.7*\paperwidth,
-        minimum height=3cm,
-    ]
-        at ($(current page.north east)+(0,-5)$)
-    {
-        {\Huge \textsc{REVISTA DE FÍSICA}}
-    };
+\setlength\parindent{0pt}
+% :FACER: facer esto robusto
+\renewcommand*{\baselinestretch}{0} % interlineado global
+
+% :FACER: numero e data en monoespaciado
+\makeatletter
+
+% NUMERO
+\def\NumeroRevista#1{\def\@NumeroRevista{#1}}
+\newcommand{\imprimeNumeroRevista}{Num.\@NumeroRevista}
 
 % DATA
-\node
-    [
-        right,
-        fill=white!30!azulUSC,
-        minimum width=0.3*\paperwidth,
-        minimum height=1cm,
-    ]
-        at ($(current page.south west)+(0,+2)$)
-    {
-        {\large \textsc{\today}}
-    };
+\def\DataRevista#1{\def\@DataRevista{#1}}
+\newcommand{\imprimeDataRevista}{\@DataRevista}
 
+% 1º ARTICULO
+\def\NomePrimeiroArticulo#1{\def\@NomePrimeiroArticulo{#1}}
+\newcommand{\imprimeNomePrimeiroArticulo}{\@NomePrimeiroArticulo}
+
+% TITULO REVISTA
+\def\imprimeTituloRevista{A voz da Física}
+
+\makeatother
+
+% Pa colorear o primeiro catacter de algo
+% \coloreacolocter{color}{texto}
+\newcommand{\coloreacaracter}[2]{%
+    {\color{#1}\directlua{tex.sprint(unicode.utf8.sub('#2',1,1))}}%
+    \directlua{tex.sprint(unicode.utf8.sub('#2',2,-1))}%
+}
+
+
+% Cores
+\usepackage{xcolor}
+\definecolor{resalte}{HTML}{ff0000}
+
+% TikZ para os gráficos
+\usepackage{tikz}
+\usetikzlibrary{calc} % para facer calculos cas posicions
+\usepackage{tcolorbox}
+
+\usepackage[
+    paper          = a4paper, % tamaño do papel
+    top            = 0mm,     % marxe superior
+    left           = 0mm,     % marxe esquerdo
+    right          = 0mm,     % marxe dereito
+    bottom         = 0mm,     % marxe inferior
+    nomarginpar    = true,    % desactivar notas no marxe (tamaño 0)
+    nohead         = true,    % desactivar o encabezado
+    nofoot         = true,    % desactivar o pe de paxina
+    % showframe,  % mostra estructura
+    % showcrop,   % mostrar tamaño útil (ver opcions layout=xxx)
+    % pass        % desactivar todo excepto showframe
+]{geometry}
+
+% \usepackage{graphicx}
+
+
+% En principio lo que buscamos es una portada llamativa pero no excesivamente
+% cargada, con una foto en medio pero rodeada con márgenes, que contengan el
+% título de la revista, la fecha (mes y año), el número de la revista, el logo de
+% la revista, el logo de la USC, y el nombre del primer artículo. La tipografía y
+% márgenes se dejará a la imaginación de los autores, así como la colocación de
+% cada objeto en la portada. El color dependerá de la foto, si queréis podéis
+% hacer alguna prueba.
+
+\NumeroRevista{250}
+\DataRevista{Febreiro do 2025}
+\NomePrimeiroArticulo{Superconductividade e Superfluidos}
+
+\begin{document}
+% Titulo da revista: \imprimeTituloRevista \\
+% Titulo da revista coloreado: \coloreacaracter{resalte}{\imprimeTituloRevista} \\
+% Revista numero: \imprimeNumeroRevista \\
+% Data: \imprimeDataRevista \\
+% Primeiro articulo: \imprimeNomePrimeiroArticulo
+% \imprimecaracteres{Titulo}
+
+\vspace*{3em}
+
+\begin{tcolorbox}[
+    colback = resalte,
+    size    = minimal,
+    top     = 5pt,
+    bottom  = 5pt,
+    boxrule = 0pt,
+    sharp corners,
+]
+\end{tcolorbox}
+
+% TITULO E ASOCIADOS
+\begin{tcolorbox}[
+    colback = white,
+    boxrule = 0pt,
+    sharp corners,
+]
+    {%
+        \FonteTitulo\fontsize{40pt}{1pt}\selectfont%
+        \coloreacaracter{resalte}{\imprimeTituloRevista}%
+    }%
+    \hfill
+    \begin{minipage}[b]{6cm}
+        Texto de arriba \\
+        Texto abaixo
+    \end{minipage}
+\end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = resalte,
+    size    = small,
+    boxrule = 0pt,
+    sharp corners,
+]
+\color{white}{\texttt{\imprimeNumeroRevista\hfill\imprimeDataRevista}}%
+\end{tcolorbox}
+
+% IMAXE DE CADA REVISTA
+% :FACER: debe cambiar con cada revista, gardar nome nun macro?
+\bgroup
+\nointerlineskip
+\begin{picture}(\textwidth,\textwidth)%
+\put(0,0){\hbox{\includegraphics[width=\textwidth]{./black_hole.jpg}}}
+\end{picture}
+\egroup
+
+% :FACER: variables para manipular as coordenadas do nodo dende os propios
+% artigos
+\begin{tikzpicture}[remember picture,overlay]
+    \node
+    [anchor=south west,inner sep=0pt]
+    at ($(current page.west)$)
+    {%
+        \begin{minipage}{0.5\linewidth}
+            \begin{tcolorbox}[
+                    boxrule     = 0pt,
+                    opacityback = 0.5,
+                    standard jigsaw,
+                    sharp corners,
+                ]
+                {\fontsize{30pt}{1pt}\selectfont\imprimeNomePrimeiroArticulo}
+            \end{tcolorbox}
+        \end{minipage}
+    };
 \end{tikzpicture}
-\end{titlepage}
+
+\end{document}
