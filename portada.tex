@@ -23,55 +23,49 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{calc} % para facer calculos cas posicions
+\usepackage{tikzpagenodes}
 \usepackage{tcolorbox}
 \usepackage{graphicx}
+\usepackage{svg}
 \usepackage[
     paper       = a4paper, % tamaño do papel
-    top         = 0mm,     % marxe superior
-    left        = 0mm,     % marxe esquerdo
-    right       = 0mm,     % marxe dereito
-    bottom      = 0mm,     % marxe inferior
+    top         = 5mm,     % marxe superior
+    left        = 5mm,     % marxe esquerdo
+    right       = 5mm,     % marxe dereito
+    bottom      = 5mm,     % marxe inferior
     nomarginpar = true,    % desactivar notas no marxe (tamaño 0)
     nohead      = true,    % desactivar o encabezado
     nofoot      = true,    % desactivar o pe de paxina
-    showframe,             % mostra estructura
+    % showframe,             % mostra estructura
 ]{geometry}
-
+\usepackage{setspace} % pa cambiar interlineados no momento
 \setlength\parindent{0pt}
-% :FACER: facer esto robusto
-\renewcommand*{\baselinestretch}{0} % interlineado global
 
 % Variedade de macros pa facilitarnos a vida logo
 \makeatletter
 
 % NUMERO
-\def\NumeroRevista#1{\def\@NumeroRevista{#1}}
-\newcommand{\imprimeNumeroRevista}{Num.\@NumeroRevista}
+\def\Numero#1{\def\@Numero{#1}}
+\newcommand{\imprimeNumero}{Num.\@Numero}
 
 % DATA
-\def\DataRevista#1{\def\@DataRevista{#1}}
-\newcommand{\imprimeDataRevista}{\@DataRevista}
+\def\Data#1{\def\@Data{#1}}
+\newcommand{\imprimeData}{\@Data}
 
-% 1º ARTICULO
-\def\NomePrimeiroArticulo#1{\def\@NomePrimeiroArticulo{#1}}
-\newcommand{\imprimeNomePrimeiroArticulo}{\@NomePrimeiroArticulo}
+% Artigos
+\def\PrimeiroArtigo#1{\def\@PrimeiroArtigo{#1}}
+\newcommand{\imprimePrimeiroArtigo}{\@PrimeiroArtigo}
+\def\SegundoArtigo#1{\def\@SegundoArtigo{#1}}
+\newcommand{\imprimeSegundoArtigo}{\@SegundoArtigo}
+\def\TerceiroArtigo#1{\def\@TerceiroArtigo{#1}}
+\newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
 
 % TITULO REVISTA
-\newcommand{\imprimeTituloRevista}{A voz da Física}
+\newcommand{\imprimeTitulo}{MOMENTUM}
 
 % RUTA PARA A IMAXE DA PORTADA
 \def\ImaxePortada#1{\def\@ImaxePortada{#1}}
 \newcommand{\imprimeImaxePortada}{\@ImaxePortada}
-
-% esto e pa logo poder cambiar algo a posicion do texto do primeiro articulo
-\def\AnclaxePrimeiroArticulo#1{\def\@AnclaxePrimeiroArticulo{#1}}
-\newcommand{\imprimeAnclaxePrimeiroArticulo}{\@AnclaxePrimeiroArticulo}
-
-\def\aQueLadoDoAnclaxePrimeiroArticulo#1{\def\@aQueLadoDoAnclaxePrimeiroArticulo{#1}}
-\newcommand{\imprimeAQueLadoDoAnclaxePrimeiroArticulo}{\@aQueLadoDoAnclaxePrimeiroArticulo}
-
-\def\AnchoPrimeiroArticulo#1{\def\@AnchoPrimeiroArticulo{#1}}
-\newcommand{\imprimeAnchoPrimeiroArticulo}{\@AnchoPrimeiroArticulo}
 
 \makeatother
 
@@ -84,91 +78,113 @@
 
 % SE QUEREMOS RETOCAR ALGO, HAI QUE FACELO NOS SEGUINTES COMANDOS
 
-\NumeroRevista{250}
-\DataRevista{Febreiro do 2025}
-\NomePrimeiroArticulo{Entrevista a Marie Curie}
-\ImaxePortada{./black_hole.jpg}
-\AnclaxePrimeiroArticulo{west}
-\aQueLadoDoAnclaxePrimeiroArticulo{right}
-\AnchoPrimeiroArticulo{0.5\linewidth}
-\definecolor{resalte}{HTML}{ff0000}
+\Numero{250}
+\Data{Febreiro do 2025}
+\PrimeiroArtigo{Entrevista a Marie Curie}
+\SegundoArtigo{Entrevista a JC}
+\TerceiroArtigo{A fisica minte}
+\ImaxePortada{./cern.png}
+\definecolor{Resalte}{HTML}{ff0000}
+\definecolor{TextoEnResalte}{HTML}{000000}
 
 \begin{document}
-% Titulo da revista: \imprimeTituloRevista \\
-% Titulo da revista coloreado: \coloreacaracter{resalte}{\imprimeTituloRevista} \\
-% Revista numero: \imprimeNumeroRevista \\
-% Data: \imprimeDataRevista \\
-% Primeiro articulo: \imprimeNomePrimeiroArticulo
-% \imprimecaracteres{Titulo}
+\thispagestyle{empty}
 
-\vspace*{3em}
+% TITULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{1em}
+{%
+    \centering%
+    \FonteTitulo\fontsize{90pt}{0pt}\selectfont%
+    \coloreacaracter{Resalte}{\imprimeTitulo}\par%
+}%
+\vspace*{1em}
 
+% NUMERO DA REVISTA E DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bgroup
+\setstretch{0}
 \begin{tcolorbox}[
-    colback = resalte,
-    size    = minimal,
-    top     = 5pt,
-    bottom  = 5pt,
-    boxrule = 0pt,
+    colback  = Resalte,
+    colframe = black,
+    boxrule  = 2pt,
+    boxsep   = 6pt,
     sharp corners,
 ]
-\end{tcolorbox}
-
-% TITULO E ASOCIADOS
-\begin{tcolorbox}[
-    colback = white,
-    boxrule = 0pt,
-    sharp corners,
-]
-    {%
-        \FonteTitulo\fontsize{40pt}{1pt}\selectfont%
-        \coloreacaracter{resalte}{\imprimeTituloRevista}%
+    {
+        \fontsize{20pt}{0pt}\selectfont%
+        \color{TextoEnResalte}{\FonteInfo\imprimeNumero\hfill\imprimeData}\par%
     }%
-    \hfill
-    \begin{minipage}[b]{6cm}
-        Texto de arriba \\
-        Texto abaixo
-    \end{minipage}
 \end{tcolorbox}
+\egroup
 
-\begin{tcolorbox}[
-    colback = resalte,
-    size    = small,
-    boxrule = 0pt,
-    sharp corners,
-]
-\color{white}{\FonteInfo\imprimeNumeroRevista\hfill\imprimeDataRevista}%
-\end{tcolorbox}
-
-% IMAXE DE CADA REVISTA
-% :FACER: debe cambiar con cada revista, gardar nome nun macro?
+% IMAXE DE CADA REVISTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bgroup
 \nointerlineskip
 \begin{picture}(\textwidth,\textwidth)%
-\put(0,0){\hbox{\includegraphics[width=\textwidth]{\imprimeImaxePortada}}}
+    \put(0,0){\hbox{\includegraphics[width=\textwidth]{\imprimeImaxePortada}}}
 \end{picture}
 \egroup
 
-% :FACER: variables para manipular as coordenadas do nodo dende os propios
-% artigos
+% % artigos
+% \begin{tikzpicture}[remember picture,overlay]
+%     \node
+%     [
+%         \imprimeAQueLadoDoAnclaxePrimeiroartigo, % a qué lado da anclaxe queremos poñer o nodo
+%         inner sep=0pt
+%     ]
+%     at ($(current page text area.\imprimeAnclaxePrimeiroartigo)$) % onde anclamos o nodo
+%     {%
+%         \begin{minipage}{\imprimeAnchoPrimeiroartigo}
+%             \begin{tcolorbox}[
+%                     colback = red,
+%                     boxrule     = 0pt,
+%                     opacityback = 0.6,
+%                     standard jigsaw,
+%                     sharp corners,
+%                 ]
+%                 {\fontsize{30pt}{1pt}\selectfont\imprimeNomePrimeiroartigo}
+%             \end{tcolorbox}
+%         \end{minipage}
+%     };
+% \end{tikzpicture}
+
+% ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{1em}
+\begin{minipage}{0.7\textwidth}
+    \centering
+    \setstretch{2}
+    {\fontsize{20pt}{0pt}\selectfont \textit{\imprimePrimeiroArtigo}}\\
+    {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeSegundoArtigo}}\\
+    {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeTerceiroArtigo}}\\
+\end{minipage}%
+
+% LOGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tikzpicture}[remember picture,overlay]
     \node
-    [
-        \imprimeAQueLadoDoAnclaxePrimeiroArticulo, % a qué lado da anclaxe queremos poñer o nodo
-        inner sep=0pt
-    ]
-    at ($(current page.\imprimeAnclaxePrimeiroArticulo)$) % onde anclamos o nodo
+    [ above left, inner sep = 0pt ]
+    at (current page text area.south east)
     {%
-        \begin{minipage}{\imprimeAnchoPrimeiroArticulo}
-            \begin{tcolorbox}[
-                    boxrule     = 0pt,
-                    opacityback = 0.6,
-                    standard jigsaw,
-                    sharp corners,
-                ]
-                {\fontsize{30pt}{1pt}\selectfont\imprimeNomePrimeiroArticulo}
-            \end{tcolorbox}
-        \end{minipage}
+        \includegraphics[width=0.19\textwidth]{./logo/logo_botafumeiro.pdf}
     };
 \end{tikzpicture}
 
+% \begin{minipage}[b]{0.5\textwidth}
+% \hfill
+% \begin{picture}(0.2\textwidth,0.2\textwidth)%
+% \put(0,0){\hbox{\includegraphics[width=0.5\textwidth]{./logo/logo_botafumeiro.pdf}}}
+% \end{picture}
+% \end{minipage}
+
+% BORDE DE COLOR NEGRO NO MARXE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[remember picture,overlay]
+    \draw
+    [ black, line width=2pt, inner sep=0pt ]
+        (current page text area.south west)
+        rectangle
+        (current page text area.north east)
+    ;
+\end{tikzpicture}
+
 \end{document}
+
+%% NOTAS:
+% A imaxe da portada debe ser cadrada exactamente
