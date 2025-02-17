@@ -117,35 +117,13 @@
 \egroup
 
 % IMAXE DE CADA REVISTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A imaxe da portada debe ser cadrada exactamente
 \bgroup
 \nointerlineskip
 \begin{picture}(\textwidth,\textwidth)%
     \put(0,0){\hbox{\includegraphics[width=\textwidth]{\imprimeImaxePortada}}}
 \end{picture}
 \egroup
-
-% % artigos
-% \begin{tikzpicture}[remember picture,overlay]
-%     \node
-%     [
-%         \imprimeAQueLadoDoAnclaxePrimeiroartigo, % a qué lado da anclaxe queremos poñer o nodo
-%         inner sep=0pt
-%     ]
-%     at ($(current page text area.\imprimeAnclaxePrimeiroartigo)$) % onde anclamos o nodo
-%     {%
-%         \begin{minipage}{\imprimeAnchoPrimeiroartigo}
-%             \begin{tcolorbox}[
-%                     colback = red,
-%                     boxrule     = 0pt,
-%                     opacityback = 0.6,
-%                     standard jigsaw,
-%                     sharp corners,
-%                 ]
-%                 {\fontsize{30pt}{1pt}\selectfont\imprimeNomePrimeiroartigo}
-%             \end{tcolorbox}
-%         \end{minipage}
-%     };
-% \end{tikzpicture}
 
 % ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace*{1em}
@@ -167,13 +145,6 @@
     };
 \end{tikzpicture}
 
-% \begin{minipage}[b]{0.5\textwidth}
-% \hfill
-% \begin{picture}(0.2\textwidth,0.2\textwidth)%
-% \put(0,0){\hbox{\includegraphics[width=0.5\textwidth]{./logo/logo_botafumeiro.pdf}}}
-% \end{picture}
-% \end{minipage}
-
 % BORDE DE COLOR NEGRO NO MARXE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tikzpicture}[remember picture,overlay]
     \draw
@@ -185,6 +156,3 @@
 \end{tikzpicture}
 
 \end{document}
-
-%% NOTAS:
-% A imaxe da portada debe ser cadrada exactamente
