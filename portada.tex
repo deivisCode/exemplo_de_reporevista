@@ -1,33 +1,10 @@
+\thispagestyle{empty}
 
-\documentclass[12pt,a4paper]{article}
-% \usepackage{lua-visual-debug}
+\twocolumn[
+\begin{@twocolumnfalse}
 
-\RequirePackage[no-math]{fontspec}
-\newfontfamily\FonteTitulo[
-    Path      = ./fontes/QualiType/,
-    Extension = .otf,
-    BoldFont  = *-Bold,
-]{QTBengal}
-\newfontfamily\FonteInfo[
-    Path      = ./fontes/LatinModernMono/,
-    Extension = .otf,
-]{lmmono10-regular}
-\setmainfont[
-    Path           = ./fontes/CMUserif/,
-    Extension      = .ttf,
-    ItalicFont     = cmunti.ttf,
-    BoldFont       = cmunbx.ttf,
-    BoldItalicFont = cmunbi.ttf,
-]{cmunrm}
-
-\usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{calc} % para facer calculos cas posicions
-\usepackage{tikzpagenodes}
-\usepackage{tcolorbox}
-\usepackage{graphicx}
-\usepackage{svg}
-\usepackage[
+% Creamos unha xeometria nova
+\newgeometry{
     paper       = a4paper, % tamaño do papel
     top         = 5mm,     % marxe superior
     left        = 5mm,     % marxe esquerdo
@@ -36,59 +13,8 @@
     nomarginpar = true,    % desactivar notas no marxe (tamaño 0)
     nohead      = true,    % desactivar o encabezado
     nofoot      = true,    % desactivar o pe de paxina
-    % showframe,             % mostra estructura
-]{geometry}
-\usepackage{setspace} % pa cambiar interlineados no momento
-\setlength\parindent{0pt}
-
-% Variedade de macros pa facilitarnos a vida logo
-\makeatletter
-
-% NUMERO
-\def\Numero#1{\def\@Numero{#1}}
-\newcommand{\imprimeNumero}{Num.\@Numero}
-
-% DATA
-\def\Data#1{\def\@Data{#1}}
-\newcommand{\imprimeData}{\@Data}
-
-% Artigos
-\def\PrimeiroArtigo#1{\def\@PrimeiroArtigo{#1}}
-\newcommand{\imprimePrimeiroArtigo}{\@PrimeiroArtigo}
-\def\SegundoArtigo#1{\def\@SegundoArtigo{#1}}
-\newcommand{\imprimeSegundoArtigo}{\@SegundoArtigo}
-\def\TerceiroArtigo#1{\def\@TerceiroArtigo{#1}}
-\newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
-
-% TITULO REVISTA
-\newcommand{\imprimeTitulo}{MOMENTUM}
-
-% RUTA PARA A IMAXE DA PORTADA
-\def\ImaxePortada#1{\def\@ImaxePortada{#1}}
-\newcommand{\imprimeImaxePortada}{\@ImaxePortada}
-
-\makeatother
-
-% Pa colorear o primeiro catacter de algo
-% \coloreacaracter{color}{texto}
-\newcommand{\coloreacaracter}[2]{%
-    {\color{#1}\directlua{tex.sprint(unicode.utf8.sub('#2',1,1))}}%
-    \directlua{tex.sprint(unicode.utf8.sub('#2',2,-1))}%
 }
-
-% SE QUEREMOS RETOCAR ALGO, HAI QUE FACELO NOS SEGUINTES COMANDOS
-
-\Numero{250}
-\Data{Febreiro do 2025}
-\PrimeiroArtigo{Entrevista a Marie Curie}
-\SegundoArtigo{Entrevista a JC}
-\TerceiroArtigo{A fisica minte}
-\ImaxePortada{./cern.png}
-\definecolor{Resalte}{HTML}{ff0000}
-\definecolor{TextoEnResalte}{HTML}{000000}
-
-\begin{document}
-\thispagestyle{empty}
+\setlength\parindent{0pt}
 
 % TITULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace*{1em}
@@ -141,7 +67,7 @@
     [ above left, inner sep = 0pt ]
     at (current page text area.south east)
     {%
-        \includegraphics[width=0.19\textwidth]{./logo/logo_botafumeiro.pdf}
+        \includegraphics[width=0.17\textwidth]{./logo.pdf}
     };
 \end{tikzpicture}
 
@@ -155,4 +81,7 @@
     ;
 \end{tikzpicture}
 
-\end{document}
+\end{@twocolumnfalse}
+]
+% volvemos a cargar a xeometria que tiñamos no preambulo
+\restoregeometry
