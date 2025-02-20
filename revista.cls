@@ -6,7 +6,7 @@
 % 'multicols'. Véxase:
 % https://www.overleaf.com/learn/latex/Multiple_columns
 % https://tex.stackexchange.com/a/285444
-\LoadClass[11pt,a4paper,twoside,twocolumn]{article}
+\LoadClass[11pt,a4paper,twoside,twocolumn]{extarticle}
 
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
 \RequirePackage[no-math]{fontspec}
@@ -69,8 +69,8 @@
 % Pa cambiar interlineados no momento usando \setstrech{}
 \usepackage{setspace}
 
-% \setlength\parindent{0pt} % tamaño da indentación
-\setstrech{5mm}
+\setlength\parindent{5mm} % tamaño da indentación
+% \setstretch{1.5}
 
 % Para graficos
 \RequirePackage{graphicx}
@@ -102,7 +102,7 @@
         {#3}
     \end{center}
     \begin{center}
-        \hrulefill
+        {\color{Resalte}\hrulefill}
     \end{center}
   \end{@twocolumnfalse}
 }]
@@ -125,98 +125,96 @@
 % Pa facilitar a creacion cun par de comandos
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
+\let\OldHeadrule\headrule
+\let\OldFootrule\footrule
+\renewcommand\headrule{\color{Resalte}\OldHeadrule}
+\renewcommand\footrule{\color{Resalte}\OldFootrule}
 
 % ESTILOS DE PÁXINA
 % :FACER: \rdata e similares deben cargarse no inicio de cada revista. Como facer pa que aparezan aqui?
-\fancypagestyle{act1}{
-    \fancyhf{}
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{ACTUALIDADE DA FACULTADE} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{act2}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{ACTUALIDADE CIENTÍFICA}
-    \renewcommand{\footrulewidth}{0pt}
-}
+% \fancypagestyle{act1}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{ACTUALIDADE DA FACULTADE}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{act2}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{ACTUALIDADE CIENTÍFICA}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
 
 \fancypagestyle{divu}{
-    \fancyhf{} 
+    \fancyhf{}
     \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{DIVULGACIÓN} 
+    \fancyhead[RE,LO]{\imprimeTitulo}
+    \fancyhead[LE,RO]{\imprimeNumero ~ : ~ \imprimeData}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{DIVULGACIÓN}
     \renewcommand{\footrulewidth}{0pt}
 }
 
-\fancypagestyle{hist}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{HISTORIA} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{filo}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{FILOSOFÍA} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{entr}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{ENTREVISTAS} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{prog}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{PROGRAMACIÓN} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{pasa}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{PASATEMPOS} 
-    \renewcommand{\footrulewidth}{0pt}
-}
-
-\fancypagestyle{anun}{
-    \fancyhf{} 
-    \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\rnome}
-    \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-    \fancyfoot[LE,RO]{\thepage} 
-    \fancyfoot[RE,LO]{ANUNCIOS} 
-    \renewcommand{\footrulewidth}{0pt}
-}
+% \fancypagestyle{hist}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{HISTORIA}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{filo}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{FILOSOFÍA}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{entr}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{ENTREVISTAS}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{prog}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{PROGRAMACIÓN}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{pasa}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{PASATEMPOS}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
+% \fancypagestyle{anun}{
+%     \fancyhf{}
+%     \renewcommand{\headrulewidth}{0.4pt}
+%     \fancyhead[RE,LO]{\rnome}
+%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
+%     \fancyfoot[LE,RO]{\thepage}
+%     \fancyfoot[RE,LO]{ANUNCIOS}
+%     \renewcommand{\footrulewidth}{0pt}
+% }
 
 % Tipografia preciosa. Xoga cos espaciados moi ben para xustificar o texto
 \RequirePackage{microtype}
@@ -234,7 +232,7 @@
 }
 
 % esto é pa mostrar as box, hyphenation points, glues, etc.
-\RequirePackage{lua-visual-debug}
+% \RequirePackage{lua-visual-debug}
 
 %% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,6 +263,10 @@
 \newcommand{\imprimeImaxePortada}{\@ImaxePortada}
 
 \makeatother
+% todos esos comandos teñen a info da revista. Gardase o valor nunha variable,
+% e imprimese no PDF con outro comando diferente. Esto da bastante
+% flexibilidade
+
 
 % Pa colorear o primeiro catacter de algo
 % \coloreacaracter{color}{texto}
@@ -282,5 +284,15 @@
 \ImaxePortada{./cern.png}
 \definecolor{Resalte}{HTML}{ff0000}
 \definecolor{TextoEnResalte}{HTML}{000000}
+
+% Os comandos anteriores definen as variables. Pa mostralas no pdf hai que usar:
+%
+% \imprimeTitulo          Titulo da revista
+% \imprimeNumero          Numero da revista
+% \imprimeData            Data de creacion
+% \imprimeImaxePortada    ruta para a imaxe de portada, debe especificarse en cada revista
+% \imprimePrimeiroArtigo  %
+% \imprimePrimeiroArtigo  % Nomes dos artigos principais.
+% \imprimeTerceiroArtigo  %
 
 \pagenumbering{arabic}\setcounter{page}{1}

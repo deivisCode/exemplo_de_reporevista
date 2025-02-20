@@ -23,7 +23,7 @@ necesarios para ter un estilo común e servir de demostración das ferramentas
 mínimas para quen non saiba usar ben \LaTeX.
 
 Para escribir un artigo, chegaría con escribir un documento deste tipo e
-despois incluilo no \texttt{artigo_MENGANITO_DE_TAL.tex}. En cada caso, hai que
+despois incluilo no \texttt{artigo de menganito de tal.tex}. En cada caso, hai que
 modificar os campos do principio.
 
 \subsection*{Texto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,19 +31,24 @@ modificar os campos do principio.
 \lettrine[lraise=0.1, lines=2]{T}{exto} cunha letra capitular.
 
 Texto en \textbf{negrita}.
+
 Texto en \textit{cursiva}.
+
 Texto \underline{subliñado}.
+
 \noindent Texto sen sangría.
+
+{\color{Resalte}Esto e texto ca cor da revista!}
 
 Texto no que se mostran \verb+\comandos+.
 
 \subsection*{Ecuacións} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En formato A5, o espazo para as ecuacións queda un pouco xusto. Xa para o A4
-inclúo \verb+\small+.
+inclúo \verb+\small+. NON! usar \verb?\small? da moitos erros!
 
 Ecuación normal:
-\begin{equation} \small
+\begin{equation}
     A_i(\textbf{x},z)
     =
     -(\partial_i U U^{-1})Q(z) + \sum_{n= 0}^\infty V^n_i(\textbf{x}) \psi_n(z)
@@ -51,7 +56,7 @@ Ecuación normal:
 \end{equation}
 
 Ecuación partida aliñada manualmente, cun único número:
-\begin{equation} \small
+\begin{equation}
 \begin{split} % cortar liñas con \\, determinar aliñamento con &
     \text{d} Q &= \Phi_0 \, \text{d}\Phi_1 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
     &- \Phi_1 \, \text{d}\Phi_0 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
@@ -62,7 +67,7 @@ Ecuación partida aliñada manualmente, cun único número:
 \end{equation}
 
 Ecuación con múltiples liñas centradas, cun único número:
-\begin{equation} \small
+\begin{equation}
 \begin{gathered} % cortar liñas con \\
     D_{A}\phi = \frac{\phi(\textbf{x} + h_D \textbf{e}_A) - \phi(\textbf{x} - h_D \textbf{e}_A)}{2 h_D}, \\
     D_{A+3} \phi = \frac{\phi\left(Q_1 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_1 e^{+i h_D \sigma_A/2}\right)}{2 h_D}, \\

@@ -1,8 +1,5 @@
 \thispagestyle{empty}
 
-\twocolumn[
-\begin{@twocolumnfalse}
-
 % Creamos unha xeometria nova
 \newgeometry{
     paper       = a4paper, % tamaño do papel
@@ -14,6 +11,9 @@
     nohead      = true,    % desactivar o encabezado
     nofoot      = true,    % desactivar o pe de paxina
 }
+
+\twocolumn[
+\begin{@twocolumnfalse}
 \setlength\parindent{0pt}
 
 % TITULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,7 +26,7 @@
 \vspace*{1em}
 
 % NUMERO DA REVISTA E DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bgroup
+{
 \setstretch{0}
 \begin{tcolorbox}[
     colback  = Resalte,
@@ -34,22 +34,22 @@
     boxrule  = 2pt,
     boxsep   = 6pt,
     sharp corners,
-]
+]%
     {
         \fontsize{20pt}{0pt}\selectfont%
         \color{TextoEnResalte}{\FonteInfo\imprimeNumero\hfill\imprimeData}\par%
     }%
 \end{tcolorbox}
-\egroup
+}
 
 % IMAXE DE CADA REVISTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % A imaxe da portada debe ser cadrada exactamente
-\bgroup
+{
 \nointerlineskip
 \begin{picture}(\textwidth,\textwidth)%
     \put(0,0){\hbox{\includegraphics[width=\textwidth]{\imprimeImaxePortada}}}
 \end{picture}
-\egroup
+}
 
 % ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vspace*{1em}
@@ -60,28 +60,29 @@
     {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeSegundoArtigo}}\\
     {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeTerceiroArtigo}}\\
 \end{minipage}%
-
-% LOGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[remember picture,overlay]
-    \node
-    [ above left, inner sep = 0pt ]
-    at (current page text area.south east)
-    {%
-        \includegraphics[width=0.17\textwidth]{./logo.pdf}
-    };
-\end{tikzpicture}
-
-% BORDE DE COLOR NEGRO NO MARXE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[remember picture,overlay]
-    \draw
-    [ black, line width=2pt, inner sep=0pt ]
-        (current page text area.south west)
-        rectangle
-        (current page text area.north east)
-    ;
-\end{tikzpicture}
-
 \end{@twocolumnfalse}
 ]
+
+% LOGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{tikzpicture}[remember picture,overlay]
+%     \node
+%     [ above left, inner sep = 0pt ]
+%     at (current page text area.south east)
+%     {%
+%         \includegraphics[width=0.17\textwidth]{./logo.pdf}
+%     };
+% \end{tikzpicture}
+
+% BORDE DE COLOR NEGRO NO MARXE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{tikzpicture}[remember picture,overlay]
+%     \draw
+%     [ black, line width=2pt, inner sep=0pt ]
+%         (current page text area.south west)
+%         rectangle
+%         (current page text area.north east)
+%     ;
+% \end{tikzpicture}
+
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry
