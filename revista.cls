@@ -6,7 +6,7 @@
 % 'multicols'. Véxase:
 % https://www.overleaf.com/learn/latex/Multiple_columns
 % https://tex.stackexchange.com/a/285444
-\LoadClass[11pt,a4paper,twoside,twocolumn]{extarticle}
+\LoadClass[11pt,a4paper,twocolumn]{extarticle}
 
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
 \RequirePackage[no-math]{fontspec}
@@ -46,6 +46,8 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc} % para facer calculos cas posicions
 
+\RequirePackage{qrcode}
+
 % Para poder usar os marxes de referencia para colocar nodos. Usase na portada
 % con 'text area'
 \RequirePackage{tikzpagenodes}
@@ -55,13 +57,15 @@
 
 \RequirePackage{geometry}
 \geometry{
-    paper          = a4paper, % tamaño do papel
-    top            = 20mm,    % marxe superior
-    left           = 10mm,    % marxe esquerdo
-    right          = 10mm,    % marxe dereito
-    bottom         = 20mm,    % marxe inferior
-    % showframe,  % mostra estructura
+    paper      = a4paper, % tamaño do papel
+    top        = 20mm,    % marxe superior
+    left       = 10mm,    % marxe esquerdo
+    right      = 10mm,    % marxe dereito
+    bottom     = 20mm,    % marxe inferior
+    % showframe,            % mostra estructura
 }
+% esto é pa mostrar as box, hyphenation points, glues, etc.
+% \RequirePackage{lua-visual-debug}
 
 % :FACER: usar multicol deberia ser o defecto. twocolumn está bastante limitado
 \RequirePackage{multicol}
@@ -85,7 +89,9 @@
 \RequirePackage{mathrsfs}   % letras reviradas \mathcal
 \RequirePackage{polynomial} % polinomios simples
 \RequirePackage{tensor}     % indices e eso
+
 \RequirePackage{svrsymbols} % simbolos variados
+\RequirePackage{adforn}     %
 
 \newenvironment{titular}[3]{
 % #1: nome do artigo,
@@ -124,7 +130,7 @@
 % Encabezados e pe de paxina
 % Pa facilitar a creacion cun par de comandos
 \RequirePackage{fancyhdr}
-\pagestyle{fancy}
+% \pagestyle{fancy}
 \let\OldHeadrule\headrule
 \let\OldFootrule\footrule
 \renewcommand\headrule{\color{Resalte}\OldHeadrule}
@@ -230,9 +236,6 @@
     citecolor = {green!45!black}, % citas bibliográficas
     urlcolor  = {blue!80!black}   % URLs e links externos
 }
-
-% esto é pa mostrar as box, hyphenation points, glues, etc.
-% \RequirePackage{lua-visual-debug}
 
 %% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
