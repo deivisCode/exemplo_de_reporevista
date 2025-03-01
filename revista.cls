@@ -57,11 +57,12 @@
 
 \RequirePackage{geometry}
 \geometry{
-    paper      = a4paper, % tamaño do papel
-    top        = 20mm,    % marxe superior
-    left       = 10mm,    % marxe esquerdo
-    right      = 10mm,    % marxe dereito
-    bottom     = 20mm,    % marxe inferior
+    paper       = a4paper, % tamaño do papel
+    top         = 20mm,    % marxe superior
+    left        = 10mm,    % marxe esquerdo
+    right       = 10mm,    % marxe dereito
+    bottom      = 20mm,    % marxe inferior
+    nomarginpar = true,    % desactivar marxe para notas
     % showframe,            % mostra estructura
 }
 % esto é pa mostrar as box, hyphenation points, glues, etc.
@@ -93,25 +94,28 @@
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
 
-\newenvironment{titular}[3]{
-% #1: nome do artigo,
-% #2: nome do autor,
-% #3: subtítulo do artigo
-\twocolumn[{%
-  \begin{@twocolumnfalse}
-    \begin{center}
-        \noindent
-        {\Huge \textbf{#1}} \\
-        \vspace{3mm}
-        {\LARGE #2} \\
-        \vspace{3mm}
-        {#3}
-    \end{center}
-    \begin{center}
-        {\color{Resalte}\hrulefill}
-    \end{center}
-  \end{@twocolumnfalse}
-}]
+\newcommand{\titular}[4]{%
+    % #1: nome do artigo,
+    % #2: nome do autor,
+    % #3: subtítulo do artigo
+    \twocolumn[%
+        \begin{@twocolumnfalse}
+            \begin{center}
+                \noindent
+                {\Huge \textbf{#1}} \\
+                \vspace{3mm}
+                {\LARGE #2} \\
+                \vspace{3mm}
+                {#3}
+            \end{center}
+            \begin{center}
+                \hrulefill
+            \end{center}
+        \end{@twocolumnfalse}
+    ]
+    % aprobeito pa meter esto aquí. Resetea números nas ecuacións
+    \setcounter{equation}{0}
+    \pagestyle{#4}
 }
 
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas
@@ -130,14 +134,10 @@
 % Encabezados e pe de paxina
 % Pa facilitar a creacion cun par de comandos
 \RequirePackage{fancyhdr}
-% \pagestyle{fancy}
-\let\OldHeadrule\headrule
-\let\OldFootrule\footrule
-\renewcommand\headrule{\color{Resalte}\OldHeadrule}
-\renewcommand\footrule{\color{Resalte}\OldFootrule}
 
+% :FACER: documentacion para quenes fagan os artigos
+% :FACER: descomentar o resto
 % ESTILOS DE PÁXINA
-% :FACER: \rdata e similares deben cargarse no inicio de cada revista. Como facer pa que aparezan aqui?
 % \fancypagestyle{act1}{
 %     \fancyhf{}
 %     \renewcommand{\headrulewidth}{0.4pt}
@@ -239,7 +239,7 @@
 
 %% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% :FACER: tal vez aparte, logo con tikz
 \makeatletter
 
 % NUMERO

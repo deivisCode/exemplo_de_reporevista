@@ -1,22 +1,17 @@
 % estilo
-\pagestyle{divu}
+% \pagestyle{divu}
 
 % titular
-\titular{nome do artigo}
-{nome do autor}
-{
-\textit{ Pequeno subtítulo para o artigo. Preferiblemente, non moi longo para
-que non lle coma moito espazo ao artigo en sí. }
-}
-
-% outros
-\setcounter{equation}{0} % resetea números nas ecuacións, non tocar
+\titular{nome do artigo}{nome do autor}{\textit{ Pequeno subtítulo para o
+artigo. Preferiblemente, non moi longo para que non lle coma moito espazo ao
+artigo en sí. } }{divu}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % corpo
 
-\subsection*{Introdución} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% :FACER: usar \sec ou \subsec ?
+\section*{Introdución} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Neste artigo de proba, inclúo algúns exemplos de formato que poden ser
 necesarios para ter un estilo común e servir de demostración das ferramentas
@@ -45,10 +40,10 @@ Texto no que se mostran \verb+\comandos+.
 \subsection*{Ecuacións} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En formato A5, o espazo para as ecuacións queda un pouco xusto. Xa para o A4
-inclúo \verb+\small+. NON! usar \verb?\small? da moitos erros!
+inclúo \verb+\small+. 
 
 Ecuación normal:
-\begin{equation}
+\begin{equation} \small
     A_i(\textbf{x},z)
     =
     -(\partial_i U U^{-1})Q(z) + \sum_{n= 0}^\infty V^n_i(\textbf{x}) \psi_n(z)
@@ -56,7 +51,7 @@ Ecuación normal:
 \end{equation}
 
 Ecuación partida aliñada manualmente, cun único número:
-\begin{equation}
+\begin{equation}\small
 \begin{split} % cortar liñas con \\, determinar aliñamento con &
     \text{d} Q &= \Phi_0 \, \text{d}\Phi_1 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
     &- \Phi_1 \, \text{d}\Phi_0 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
@@ -67,7 +62,7 @@ Ecuación partida aliñada manualmente, cun único número:
 \end{equation}
 
 Ecuación con múltiples liñas centradas, cun único número:
-\begin{equation}
+\begin{equation}\small
 \begin{gathered} % cortar liñas con \\
     D_{A}\phi = \frac{\phi(\textbf{x} + h_D \textbf{e}_A) - \phi(\textbf{x} - h_D \textbf{e}_A)}{2 h_D}, \\
     D_{A+3} \phi = \frac{\phi\left(Q_1 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_1 e^{+i h_D \sigma_A/2}\right)}{2 h_D}, \\
