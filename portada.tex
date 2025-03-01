@@ -2,13 +2,12 @@
 
 % Creamos unha xeometria nova
 \newgeometry{
-    top         = 5mm,     % marxe superior
-    left        = 5mm,     % marxe esquerdo
-    right       = 5mm,     % marxe dereito
-    bottom      = 5mm,     % marxe inferior
-    nomarginpar = true,    % desactivar notas no marxe (tamaño 0)
-    nohead      = true,    % desactivar o encabezado
-    nofoot      = true,    % desactivar o pe de paxina
+    top    = 5mm,     % marxe superior
+    left   = 5mm,     % marxe esquerdo
+    right  = 5mm,     % marxe dereito
+    bottom = 5mm,     % marxe inferior
+    nohead = true,    % desactivar o encabezado
+    nofoot = true,    % desactivar o pe de paxina
 }
 
 \onecolumn
@@ -18,10 +17,10 @@
 \vspace*{1em}
 {%
     \centering%
-    \FonteTitulo\fontsize{90pt}{0pt}\selectfont%
+    \FonteTitulo\fontsize{80pt}{0pt}\selectfont%
     \coloreacaracter{Resalte}{\imprimeTitulo}\par%
 }%
-\vspace*{1em}
+\vspace*{2em}
 
 % NUMERO DA REVISTA E DATA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
@@ -50,121 +49,14 @@
 }
 
 % ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace*{1em}
-\begin{minipage}{0.7\textwidth}
+% \vfill
+\begin{minipage}{\textwidth}
     \centering
     \setstretch{2}
     {\fontsize{20pt}{0pt}\selectfont \textit{\imprimePrimeiroArtigo}}\\
     {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeSegundoArtigo}}\\
     {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeTerceiroArtigo}}\\
 \end{minipage}%
-
-% LOGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{tikzpicture}[remember picture,overlay]
-    \node
-    [ above left, inner sep = 0pt ]
-    at (current page text area.south east)
-    {%
-        \includegraphics[width=0.17\textwidth]{./logos/logo.pdf}
-    };
-\end{tikzpicture}
-
-% BORDE DE COLOR NEGRO NO MARXE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[remember picture,overlay]
-    \draw
-    [ black, line width=2pt, inner sep=0pt ]
-        (current page text area.south west)
-        rectangle
-        (current page text area.north east)
-    ;
-\end{tikzpicture}
-
-{ % COMEZO DO CENTRADO
-\centering
-\vspace*{3em}
-
-{%
-    \fontsize{16pt}{0pt}\selectfont%
-    \textit{%
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-        pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-        tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-    \par%
-}%
-
-\vspace*{5em}
-\adforn{35}
-\vspace*{5em}
-
-{%
-    \fontsize{16pt}{0pt}\selectfont%
-    \textit{%
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-        pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-        tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-    \par%
-}%
-
-\vspace*{5em}
-\adforn{35}
-\vspace*{5em}
-
-{%
-    \fontsize{16pt}{0pt}\selectfont%
-    \textit{%
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dictum%
-        pulvinar leo at vehicula. Integer feugiat elementum diam, nec tristique sem%
-        tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
-    \par%
-}%
-} % FIN DO CENTRADO
-
-\thispagestyle{empty}
-\vspace*{3em}
-
-\vfill
-\hrulefill
-
-% CODIGO QR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{minipage}[b][5cm]{5cm}
-    \begin{tcolorbox}[
-            colframe = black,
-            boxrule  = 2pt,
-            boxsep   = 0cm,
-            sharp corners,
-        ]%
-        \hypersetup{urlcolor=black}
-        \qrset{height=4cm}%
-        \qrcode{https://youtu.be/dQw4w9WgXcQ}
-    \end{tcolorbox}
-\end{minipage}
-\hfill
-\begin{minipage}[b]{0.3\linewidth}
-    \centering
-    Informacion de contacto\par
-    \url{correo@correo.gal}\par
-    \url{correo@correo.gal}\par
-    \url{correo@correo.gal}\par
-    \vspace*{3em}
-\end{minipage}
-\hfill
-\begin{minipage}[b][5cm]{5cm}
-    \begin{picture}(5cm,5cm)%
-        \put(0,0){\hbox{\includegraphics[width=5cm]{./logos/logo.pdf}}}
-    \end{picture}
-\end{minipage}
-
-% Outra liña negra no borde
-\begin{tikzpicture}[remember picture,overlay]
-    \draw
-    [ black, line width=2pt, inner sep=0pt ]
-        (current page text area.south west)
-        rectangle
-        (current page text area.north east)
-    ;
-\end{tikzpicture}
 
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry
