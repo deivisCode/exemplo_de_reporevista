@@ -1,13 +1,14 @@
 \newgeometry{
-    top         = 5mm,     % marxe superior
-    left        = 5mm,     % marxe esquerdo
-    right       = 5mm,     % marxe dereito
-    bottom      = 5mm,     % marxe inferior
-    nohead      = true,    % desactivar o encabezado
-    nofoot      = true,    % desactivar o pe de paxina
+    top    = 5mm,  % marxe superior
+    left   = 5mm,  % marxe esquerdo
+    right  = 5mm,  % marxe dereito
+    bottom = 5mm,  % marxe inferior
+    nohead = true, % desactivar o encabezado
+    nofoot = true, % desactivar o pe de paxina
 }
 \onecolumn
-% LOGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ClearShipoutPicture
 
 { % COMEZO DO CENTRADO
 \centering
@@ -55,22 +56,13 @@
 \vfill
 \hrulefill
 
-% CODIGO QR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{minipage}[b][5cm]{5cm}
-    \begin{tcolorbox}[
-            colframe = black,
-            boxrule  = 2pt,
-            boxsep   = 0cm,
-            sharp corners,
-        ]%
+\begin{minipage}[c][5cm]{5cm}
         \hypersetup{urlcolor=black}
-        \qrset{height=4cm}%
+        \qrset{height = 4cm}%
         \qrcode{https://youtu.be/dQw4w9WgXcQ}
-    \end{tcolorbox}
 \end{minipage}
 \hfill
-\begin{minipage}[b]{0.3\linewidth}
+\begin{minipage}[c]{0.4\linewidth}
     \centering
     Informacion de contacto\par
     \url{correo@correo.gal}\par
@@ -79,8 +71,8 @@
     \vspace*{3em}
 \end{minipage}
 \hfill
-\begin{minipage}[b][5cm]{5cm}
-    \begin{picture}(5cm,5cm)%
+\begin{minipage}[c][4cm]{5cm}
+    \begin{picture}(5cm,4cm)%
         \put(0,0){\hbox{\includegraphics[width=5cm]{./logos/usc-branco-negro.eps}}}
     \end{picture}
 \end{minipage}
