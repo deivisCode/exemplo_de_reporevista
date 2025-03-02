@@ -1,11 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{revista}[2025/01/01 Clase para a revista de Fisica USC]
 
-% NOTA: poderíase usar a clase 'memoir'. Ten varias vantaxes, pero deume pereza
-% meterme con eso. Para mellorar o estilo 'twocolumn' pode usarse o paquete
-% 'multicols'. Véxase:
-% https://www.overleaf.com/learn/latex/Multiple_columns
-% https://tex.stackexchange.com/a/285444
 \LoadClass[11pt,a4paper,twocolumn]{extarticle}
 
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
@@ -46,6 +41,12 @@
 \RequirePackage{tikz}
 \usetikzlibrary{calc} % para facer calculos cas posicions
 
+% pa ter fondos con \AddToShipoutPicture
+\RequirePackage{eso-pic}
+
+% pa ter alphas
+\RequirePackage{transparent}
+
 \RequirePackage{qrcode}
 
 % Para poder usar os marxes de referencia para colocar nodos. Usase na portada
@@ -68,7 +69,11 @@
 % esto é pa mostrar as box, hyphenation points, glues, etc.
 % \RequirePackage{lua-visual-debug}
 
-% :FACER: usar multicol deberia ser o defecto. twocolumn está bastante limitado
+% Por agora usamos a opcion 'twocolumn' da clase 'article'. Eventualmente
+% poderíamos pasar a usar os entornos de dúas columnas deste paquete.
+% Véxase:
+% https://www.overleaf.com/learn/latex/Multiple_columns
+% https://tex.stackexchange.com/a/285444
 \RequirePackage{multicol}
 
 % Pa cambiar interlineados no momento usando \setstrech{}
@@ -79,7 +84,7 @@
 
 % Para graficos
 \RequirePackage{graphicx}
-\RequirePackage{svg}
+% \RequirePackage{svg}
 
 % Mates e todo eso
 \RequirePackage{mathtools}  % mates xerais
@@ -97,25 +102,24 @@
 \newcommand{\titular}[4]{%
     % #1: nome do artigo,
     % #2: nome do autor,
-    % #3: subtítulo do artigo
+    % #3: estilo (divulgacion,historia,etc.)
+    % #4: subtítulo do artigo
+    \pagestyle{#3}
     \twocolumn[%
         \begin{@twocolumnfalse}
             \begin{center}
                 \noindent
-                {\Huge \textbf{#1}} \\
+                {\color{Resalte}\Huge \textbf{#1}} \\
                 \vspace{3mm}
-                {\LARGE #2} \\
+                {\Large #2} \\
                 \vspace{3mm}
-                {#3}
-            \end{center}
-            \begin{center}
-                \hrulefill
+                \textit{#4}
             \end{center}
         \end{@twocolumnfalse}
     ]
-    % aprobeito pa meter esto aquí. Resetea números nas ecuacións
+    % aprobeito pa meter esto aquí. Resetea números nas ecuacións e figuras
     \setcounter{equation}{0}
-    \pagestyle{#4}
+    \setcounter{figure}{0}
 }
 
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas
@@ -136,91 +140,100 @@
 \RequirePackage{fancyhdr}
 
 % :FACER: documentacion para quenes fagan os artigos
-% :FACER: descomentar o resto
-% ESTILOS DE PÁXINA
-% \fancypagestyle{act1}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{ACTUALIDADE DA FACULTADE}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{act2}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{ACTUALIDADE CIENTÍFICA}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
 
-\fancypagestyle{divu}{
+% ESTILOS DE PÁXINA.
+% Estos estilos cambian os encabezados das páxinas dependendo dos artigos que
+% haxa.
+
+% artigos de DIVULGACION
+\fancypagestyle{divulgacion}{
     \fancyhf{}
     \renewcommand{\headrulewidth}{0.4pt}
-    \fancyhead[RE,LO]{\imprimeTitulo}
-    \fancyhead[LE,RO]{\imprimeNumero ~ : ~ \imprimeData}
+    \fancyhead[RE,LO]{DIVULGACIÓN}
     \fancyfoot[LE,RO]{\thepage}
-    \fancyfoot[RE,LO]{DIVULGACIÓN}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
     \renewcommand{\footrulewidth}{0pt}
 }
 
-% \fancypagestyle{hist}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{HISTORIA}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{filo}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{FILOSOFÍA}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{entr}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{ENTREVISTAS}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{prog}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{PROGRAMACIÓN}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{pasa}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{PASATEMPOS}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
-% \fancypagestyle{anun}{
-%     \fancyhf{}
-%     \renewcommand{\headrulewidth}{0.4pt}
-%     \fancyhead[RE,LO]{\rnome}
-%     \fancyhead[LE,RO]{\rnum ~ : ~ \rdata}
-%     \fancyfoot[LE,RO]{\thepage}
-%     \fancyfoot[RE,LO]{ANUNCIOS}
-%     \renewcommand{\footrulewidth}{0pt}
-% }
+% artigos de HISTORIA
+\fancypagestyle{historia}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{HISTORIA}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% artigos de ACTUALIDADE DA FACULTADE
+\fancypagestyle{actualidadeFacultade}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{ACTUALIDADE DA FACULTADE}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% artigos de ACTUALIDADE CIENTIFICA
+\fancypagestyle{actualidadeCientifica}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{ACTUALIDADE CIENTÍFICA}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% artigos de FILOSOFIA
+\fancypagestyle{filosofia}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{FILOSOFÍA}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% artigos de ENTREVISTAS
+\fancypagestyle{entrevistas}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{ENTREVISTAS}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% artigos de PROGRAMACIÓN
+\fancypagestyle{programacion}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{PROGRAMACIÓN}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% seccions de PASATEMPOS
+\fancypagestyle{pasatempos}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{PASATEMPOS}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% seccions de ANUNCIOS
+\fancypagestyle{anuncios}{
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0.4pt}
+    \fancyhead[RE,LO]{ANUNCIOS}
+    \fancyfoot[LE,RO]{\thepage}
+    \fancyfoot[RE,LO]{\imprimeTitulo}
+    \renewcommand{\footrulewidth}{0pt}
+}
 
 % Tipografia preciosa. Xoga cos espaciados moi ben para xustificar o texto
 \RequirePackage{microtype}
@@ -253,10 +266,10 @@
 % Artigos
 \def\PrimeiroArtigo#1{\def\@PrimeiroArtigo{#1}}
 \newcommand{\imprimePrimeiroArtigo}{\@PrimeiroArtigo}
-\def\SegundoArtigo#1{\def\@SegundoArtigo{#1}}
-\newcommand{\imprimeSegundoArtigo}{\@SegundoArtigo}
-\def\TerceiroArtigo#1{\def\@TerceiroArtigo{#1}}
-\newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
+% \def\SegundoArtigo#1{\def\@SegundoArtigo{#1}}
+% \newcommand{\imprimeSegundoArtigo}{\@SegundoArtigo}
+% \def\TerceiroArtigo#1{\def\@TerceiroArtigo{#1}}
+% \newcommand{\imprimeTerceiroArtigo}{\@TerceiroArtigo}
 
 % TITULO REVISTA
 \newcommand{\imprimeTitulo}{MOMENTUM}
@@ -282,8 +295,8 @@
 \Numero{0}
 \Data{Enero do 1900}
 \PrimeiroArtigo{Entrevista a Marie Curie}
-\SegundoArtigo{Entrevista a JC}
-\TerceiroArtigo{A fisica minte}
+% \SegundoArtigo{Entrevista a JC}
+% \TerceiroArtigo{A fisica minte}
 \ImaxePortada{./cern.png}
 \definecolor{Resalte}{HTML}{ff0000}
 \definecolor{TextoEnResalte}{HTML}{000000}

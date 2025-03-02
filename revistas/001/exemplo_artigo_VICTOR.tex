@@ -1,17 +1,14 @@
-% estilo
-% \pagestyle{divu}
+\titular%
+{Nome do artigo}
+{Perro Sánche}
+{divulgacion}
+{
+Pequeno subtítulo para o artigo. Preferiblemente, non moi longo para que non
+lle coma moito espazo ao artigo en sí.
+}
 
-% titular
-\titular{nome do artigo}{nome do autor}{\textit{ Pequeno subtítulo para o
-artigo. Preferiblemente, non moi longo para que non lle coma moito espazo ao
-artigo en sí. } }{divu}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% corpo
-
-% :FACER: usar \sec ou \subsec ?
-\section*{Introdución} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% as distintas partes separanse con 'subsections' SEMPRE
+\subsection*{Introdución}
 
 Neste artigo de proba, inclúo algúns exemplos de formato que poden ser
 necesarios para ter un estilo común e servir de demostración das ferramentas
@@ -23,15 +20,12 @@ modificar os campos do principio.
 
 \subsection*{Texto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\lettrine[lraise=0.1, lines=2]{T}{exto} cunha letra capitular.
+
+\lettrine[lraise=0.1, lines=2]{T}{exto} cunha letra capitular, a cal fai que as seguintes liñas se indenten automaticamente
 
 Texto en \textbf{negrita}.
-
 Texto en \textit{cursiva}.
-
 Texto \underline{subliñado}.
-
-\noindent Texto sen sangría.
 
 {\color{Resalte}Esto e texto ca cor da revista!}
 
@@ -40,7 +34,7 @@ Texto no que se mostran \verb+\comandos+.
 \subsection*{Ecuacións} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En formato A5, o espazo para as ecuacións queda un pouco xusto. Xa para o A4
-inclúo \verb+\small+. 
+inclúo \verb+\small+.
 
 Ecuación normal:
 \begin{equation} \small
@@ -73,11 +67,14 @@ Ecuación con múltiples liñas centradas, cun único número:
 
 \subsection*{Imaxes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Poden poñerse imaxes como sempre. Solo hai que ter coidado de que igual \LaTeX
+as recoloca onde lle pete. Por exemplo a imaxe \ref{fig:imaxe}
+
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\linewidth]{./revistas/001/imaxes/fig1.png}
-    \caption{Figura 1}
-    \label{fig:figura1}
+    \caption{Unha imaxe de exemplo}
+    \label{fig:imaxe}
 \end{figure}
 
 \subsection*{Cadros} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
