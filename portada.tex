@@ -61,3 +61,15 @@
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry
 \twocolumn
+
+% FONDO
+\AddToShipoutPictureBG{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{
+            \vfill
+            \centering
+            {\transparent{0.1}\includegraphics{./logos/botafumeiro.png}}
+            \vfill
+        }
+    }
+}
