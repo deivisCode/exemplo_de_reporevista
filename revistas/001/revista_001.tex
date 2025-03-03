@@ -1,21 +1,21 @@
 \documentclass{revista}
 
+% definimos as variables de cada revista
 \Numero{001}
-\Data{Enero do 1900}
-\PrimeiroArtigo{Entrevista a Marie Curie}
-% \SegundoArtigo{Entrevista a JC}
-% \TerceiroArtigo{A fisica minte}
-\ImaxePortada{./revistas/001/imaxes/cern.png}
+\Data{}
+\PrimeiroArtigo{}
+\ImaxePortada{}
 \definecolor{Resalte}{HTML}{ff0000}
 \definecolor{TextoEnResalte}{HTML}{000000}
 
 \begin{document}
+% cargamos a portada
 \input{portada.tex}
 
-\input{./revistas/001/exemplo_artigo_VICTOR.tex}
-\input{./revistas/001/exemplo_artigo_VICTOR.tex}
+\input{revistas/001/exemplo.tex}
 
 \printbibliography
 
+% cargamos a contraportada
 \input{contraportada.tex}
 \end{document}

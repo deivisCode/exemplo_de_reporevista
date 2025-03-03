@@ -2,12 +2,12 @@
 
 % Creamos unha xeometria nova
 \newgeometry{
-    top    = 5mm,     % marxe superior
-    left   = 5mm,     % marxe esquerdo
-    right  = 5mm,     % marxe dereito
-    bottom = 5mm,     % marxe inferior
-    nohead = true,    % desactivar o encabezado
-    nofoot = true,    % desactivar o pe de paxina
+    top    = 5mm,  % marxe superior
+    left   = 5mm,  % marxe esquerdo
+    right  = 5mm,  % marxe dereito
+    bottom = 5mm,  % marxe inferior
+    nohead = true, % desactivar o encabezado
+    nofoot = true, % desactivar o pe de paxina
 }
 
 \onecolumn
@@ -40,7 +40,7 @@
 }
 
 % IMAXE DE CADA REVISTA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% A imaxe da portada debe ser cadrada exactamente
+% A imaxe da portada debe ser CADRADA EXACTAMENTE
 {
 \nointerlineskip
 \begin{picture}(\textwidth,\textwidth)%
@@ -51,18 +51,19 @@
 % ARTIGOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{minipage}{\textwidth}
     \centering
-    % \setstretch{2}
+    % \setstretch{2} % esto dos espaciados dame dores de cabeza...
     \vspace*{1em}
     {\fontsize{26pt}{0pt}\selectfont \textit{\imprimePrimeiroArtigo}}\\
-    % {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeSegundoArtigo}}\\
-    % {\fontsize{20pt}{0pt}\selectfont \textit{\imprimeTerceiroArtigo}}\\
 \end{minipage}%
 
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry
 \twocolumn
 
-% FONDO
+% FONDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% este fondo vai aparecer en todas as páxinas ata que vexa o comando
+% \ClearShipoutPicture (que está na contraportada). Incluir o fondo fai a
+% compilacion bastante mais lenta
 \AddToShipoutPictureBG{
     \put(0,0){
         \parbox[b][\paperheight]{\paperwidth}{

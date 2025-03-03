@@ -8,9 +8,6 @@ SHELL := bash
 rula: revistas/$(numero)/revista_$(numero).tex
 	latexmk revistas/$(numero)/revista_$(numero).tex
 
-portada: portada.tex
-	latexmk portada.tex
-
 limpa:
 	rm -rf .pdf/* .aux/*
 

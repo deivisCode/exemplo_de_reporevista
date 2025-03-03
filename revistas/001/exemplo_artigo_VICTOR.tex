@@ -1,6 +1,6 @@
 \titular%
 {Nome do artigo}
-{Perro Sánche}
+{Victor}
 {divulgacion}
 {
 Pequeno subtítulo para o artigo. Preferiblemente, non moi longo para que non
@@ -15,13 +15,14 @@ necesarios para ter un estilo común e servir de demostración das ferramentas
 mínimas para quen non saiba usar ben \LaTeX.
 
 Para escribir un artigo, chegaría con escribir un documento deste tipo e
-despois incluilo no \texttt{artigo de menganito de tal.tex}. En cada caso, hai que
-modificar os campos do principio.
+despois incluilo no \texttt{artigo de menganito de tal.tex}. En cada caso, hai
+que modificar os campos do principio.
 
 \subsection*{Texto} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\lettrine[lraise=0.1, lines=2]{T}{exto} cunha letra capitular, a cal fai que as seguintes liñas se indenten automaticamente
+\lettrine[lraise=0.1, lines=2]{T}{exto}%
+cunha letra capitular, a cal fai que as seguintes liñas se indenten
+automaticamente
 
 Texto en \textbf{negrita}.
 Texto en \textit{cursiva}.
@@ -46,23 +47,23 @@ Ecuación normal:
 
 Ecuación partida aliñada manualmente, cun único número:
 \begin{equation}\small
-\begin{split} % cortar liñas con \\, determinar aliñamento con &
-    \text{d} Q &= \Phi_0 \, \text{d}\Phi_1 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
-    &- \Phi_1 \, \text{d}\Phi_0 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
-    &+ \Phi_2 \, \text{d}\Phi_0 \wedge \text{d}\Phi_1 \wedge \text{d}\Phi_3 \\
-    &- \Phi_3 \, \text{d}\Phi_0 \wedge \text{d}\Phi_1 \wedge \text{d}\Phi_2.
-    \label{eq:dQ_phi}
-\end{split}
+    \begin{split} % cortar liñas con \\, determinar aliñamento con &
+        \text{d} Q &= \Phi_0 \, \text{d}\Phi_1 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
+        &- \Phi_1 \, \text{d}\Phi_0 \wedge \text{d}\Phi_2 \wedge \text{d}\Phi_3 \\
+        &+ \Phi_2 \, \text{d}\Phi_0 \wedge \text{d}\Phi_1 \wedge \text{d}\Phi_3 \\
+        &- \Phi_3 \, \text{d}\Phi_0 \wedge \text{d}\Phi_1 \wedge \text{d}\Phi_2.
+        \label{eq:dQ_phi}
+    \end{split}
 \end{equation}
 
 Ecuación con múltiples liñas centradas, cun único número:
 \begin{equation}\small
-\begin{gathered} % cortar liñas con \\
-    D_{A}\phi = \frac{\phi(\textbf{x} + h_D \textbf{e}_A) - \phi(\textbf{x} - h_D \textbf{e}_A)}{2 h_D}, \\
-    D_{A+3} \phi = \frac{\phi\left(Q_1 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_1 e^{+i h_D \sigma_A/2}\right)}{2 h_D}, \\
-    D_{A+6} \phi = \frac{\phi\left(Q_2 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_2 e^{+i h_D \sigma_A/2}\right)}{2 h_D}.
-    \label{eq:D_A}
-\end{gathered}
+    \begin{gathered} % cortar liñas con \\
+        D_{A}\phi = \frac{\phi(\textbf{x} + h_D \textbf{e}_A) - \phi(\textbf{x} - h_D \textbf{e}_A)}{2 h_D}, \\
+        D_{A+3} \phi = \frac{\phi\left(Q_1 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_1 e^{+i h_D \sigma_A/2}\right)}{2 h_D}, \\
+        D_{A+6} \phi = \frac{\phi\left(Q_2 e^{-i h_D \sigma_A/2}\right) - \phi\left(Q_2 e^{+i h_D \sigma_A/2}\right)}{2 h_D}.
+        \label{eq:D_A}
+    \end{gathered}
 \end{equation}
 
 \subsection*{Imaxes} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -70,35 +71,38 @@ Ecuación con múltiples liñas centradas, cun único número:
 Poden poñerse imaxes como sempre. Solo hai que ter coidado de que igual \LaTeX
 as recoloca onde lle pete. Por exemplo a imaxe \ref{fig:imaxe}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.8\linewidth]{./revistas/001/imaxes/fig1.png}
-    \caption{Unha imaxe de exemplo}
-    \label{fig:imaxe}
-\end{figure}
+Como este é un arquivo de proba, deixo esto comentado e non mostro nada
+
+% \begin{figure}[h!]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{./revistas/001/imaxes/fig1.png}
+%     \caption{Unha imaxe de exemplo}
+%     \label{fig:imaxe}
+% \end{figure}
 
 \subsection*{Cadros} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Pódense facer cadros moi simples pero que eu creo que quedan moi ben sen ter que recurrir a páxinas externas:
+Pódense facer cadros moi simples pero que eu creo que quedan moi ben sen ter
+que recurrir a páxinas externas:
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{cc} % número de columnas = número de c
-    \toprule
-    \midrule
-    \multicolumn{2}{c}{información xeral ao cadro} \\ % \multicolumn{número de columnas}{aliñamento}
-    \midrule
-    {título de outra columna} & {título dunha columna} \\
-    \midrule
-    \toprule
+    \centering
+    \begin{tabular}{cc} % número de columnas = número de c
+        \toprule
+        \midrule
+        \multicolumn{2}{c}{información xeral ao cadro} \\ % \multicolumn{número de columnas}{aliñamento}
+        \midrule
+        {título de outra columna} & {título dunha columna} \\
+        \midrule
+        \toprule
 
-    {11} & {12} \\
-    \midrule
-    {21} & {22} \\
+        {11} & {12} \\
+        \midrule
+        {21} & {22} \\
 
-    \midrule
-    \bottomrule
-\end{tabular}
-\caption{Cadro 1}
-\label{Tab:cadro1}
+        \midrule
+        \bottomrule
+    \end{tabular}
+    \caption{Cadro 1}
+    \label{Tab:cadro1}
 \end{table}

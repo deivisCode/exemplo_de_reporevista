@@ -16,14 +16,15 @@ Este é repositorio oficial da revista ***M*****OMEMTUM**, creada de 0 por estud
 
 ## ¿Como contribuír á revista?
 
-A mellor maneira de contribuír é enviándonos artigos para publicar ao correo revistafisicaUSC@gmail.com
-As contribucións en forma de código aquí en github están limitadas a temas de
-formato, estilos e similares. Os artigos sempre deben pasar polo correo para
-ser sometidos a triaxe. En xeral, as contribucións son abertas a todo o mundo.
-Encargámonos de dar prioridade aos artigos enviados antes, ou aos que necesitan
-urxencia, pero non queremos preferenciar a ninguén. Queremos que todas as persoas
-poidan participar neste proxecto. Se tendes dúbidas, podedes preguntar polo grupo
-de whatsapp da DAF, ou mellor, polo da revista.
+A mellor maneira de contribuír é enviándonos artigos para publicar ao correo
+revistafisicaUSC@gmail.com As contribucións en forma de código aquí en github
+están limitadas a temas de formato, estilos e similares. Os artigos sempre
+deben pasar polo correo para ser sometidos a triaxe. En xeral, as contribucións
+son abertas a todo o mundo. Encargámonos de dar prioridade aos artigos enviados
+antes, ou aos que necesitan urxencia, pero non queremos preferenciar a ninguén.
+Queremos que todas as persoas poidan participar neste proxecto. Se tendes
+dúbidas, podedes preguntar polo grupo de whatsapp da DAF, ou mellor, polo da
+revista.
 
 ## Estrutura do repositorio
 

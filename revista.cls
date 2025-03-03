@@ -1,8 +1,20 @@
+% Este é o formato da revista. Se buscas por qué tal cou cal cousa se ve como
+% se ve, deberías mirar aquí. Intentei que esto estivese comentado na medida do
+% posible, para facilitar o uso e modificación desto no futuro. Todo esto foi
+% escrito de 0 por varios estudantes da facultade de física da universidade de
+% Santiago de Compostela.  Se queres saber como contribuir, botalle un ollo ao
+% arquivo README.md. Este é un proxecto libre, de uso e de responsabilidade. En
+% ningún momento nos imos facer responsables se compilas esto e se che queima a
+% CPU (dudo que pase).
+%
+% os comentarios con :FACER: están para usar con ripgrep
+
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{revista}[2025/01/01 Clase para a revista de Fisica USC]
+\ProvidesClass{revista}[2025/03/03 Clase para a revista de Fisica USC]
 
 \LoadClass[11pt,a4paper,twocolumn]{extarticle}
 
+% :FACER: buscar mellores tipografías
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
 \RequirePackage[no-math]{fontspec}
 \newfontfamily\FonteTitulo[
@@ -22,14 +34,15 @@
     BoldItalicFont = cmunbi.ttf,
 ]{cmunrm}
 
-% usar galego (como debe ser)
+% Usar galego (como debe ser)
 \RequirePackage[galician]{babel}
-% Usar babel pode fastidiar as citas con biblatex, asique hai que usar 'csquotes'
+% Usar babel pode fastidiar as citas con biblatex, asique hai que usar
+% 'csquotes'
 \RequirePackage{csquotes}
 
-% BIBLIOGRAFIAAAA
+% Bibliografia
 \RequirePackage[
-    style = alphabetic,
+    style  = alphabetic,
     natbib = true
 ]{biblatex}
 \addbibresource{bibliografia.bib}
@@ -39,23 +52,27 @@
 
 % Graficos e tal
 \RequirePackage{tikz}
-\usetikzlibrary{calc} % para facer calculos cas posicions
-
-% pa ter fondos con \AddToShipoutPicture
-\RequirePackage{eso-pic}
-
-% pa ter alphas
-\RequirePackage{transparent}
-
-\RequirePackage{qrcode}
+ % para facer calculos cas posicions dos nodos, sumándolle cousas
+\usetikzlibrary{calc}
 
 % Para poder usar os marxes de referencia para colocar nodos. Usase na portada
 % con 'text area'
 \RequirePackage{tikzpagenodes}
 
+% Pa ter fondos con \AddToShipoutPictureBG
+\RequirePackage{eso-pic}
+
+% Pa ter alphas (transparencia), por exemplo no fondo do botafumeiro
+\RequirePackage{transparent}
+
+% E pos codigos QR da contraportada, con \qrcode{}
+\RequirePackage{qrcode}
+
 % Para recuadros, fondos, etc.
 \RequirePackage{tcolorbox}
 
+% Xeometria do documento. Na portada e na contraportada sobreescribimos a
+% xeometría con \newgeometry e volvemos a esta con \restoregeometry
 \RequirePackage{geometry}
 \geometry{
     paper       = a4paper, % tamaño do papel
@@ -64,11 +81,13 @@
     right       = 10mm,    % marxe dereito
     bottom      = 20mm,    % marxe inferior
     nomarginpar = true,    % desactivar marxe para notas
-    % showframe,            % mostra estructura
+    % showframe,            % mostra estructura, moi util
 }
-% esto é pa mostrar as box, hyphenation points, glues, etc.
+
+% esto é pa mostrar as box, hyphenation points, glues, etc. Útil para depurar
 % \RequirePackage{lua-visual-debug}
 
+% :FACER: como usar duas columnas?
 % Por agora usamos a opcion 'twocolumn' da clase 'article'. Eventualmente
 % poderíamos pasar a usar os entornos de dúas columnas deste paquete.
 % Véxase:
@@ -80,7 +99,6 @@
 \usepackage{setspace}
 
 \setlength\parindent{5mm} % tamaño da indentación
-% \setstretch{1.5}
 
 % Para graficos
 \RequirePackage{graphicx}
@@ -99,14 +117,19 @@
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
 
+% :FACER: facer o subtitulo opcional (con \NewDocumentCommand e \IfNoValueTF)
+% Un dos comandos máis importantes. Debe usarse ao comezo de cada artigo.
 \newcommand{\titular}[4]{%
     % #1: nome do artigo,
     % #2: nome do autor,
-    % #3: estilo (divulgacion,historia,etc.)
+    % #3: estilo da páxina, cambia os encabezados (e no futuro pode que mais
+    %     cousas) A escoller entre:
+    %     divulgacion,historia,actualidadeFacultade,actualidadeCientifica,
+    %     filosofia,entrevistas,programacion,pasatempos,anuncios
     % #4: subtítulo do artigo
     \pagestyle{#3}
     \twocolumn[%
-        \begin{@twocolumnfalse}
+        \begin{@twocolumnfalse} % desactivamos temporalmente as duas columnas
             \begin{center}
                 \noindent
                 {\color{Resalte}\Huge \textbf{#1}} \\
@@ -124,8 +147,8 @@
 
 % Esto pa cambiar facilmente o estilo das 'captions' das cousas
 \RequirePackage[justification=centering]{caption}
-% \captionsetup[figure]{ labelfont=bf }
-% \captionsetup[table]{ labelfont=bf }
+\captionsetup[figure]{ labelfont=bf }
+\captionsetup[table]{ labelfont=bf }
 
 % Uns paquetes varios que non organicei
 \RequirePackage{subcaption}
@@ -138,8 +161,6 @@
 % Encabezados e pe de paxina
 % Pa facilitar a creacion cun par de comandos
 \RequirePackage{fancyhdr}
-
-% :FACER: documentacion para quenes fagan os artigos
 
 % ESTILOS DE PÁXINA.
 % Estos estilos cambian os encabezados das páxinas dependendo dos artigos que
@@ -252,7 +273,7 @@
 
 %% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% :FACER: tal vez aparte, logo con tikz
+% :FACER: deberiamos facer aqui o logo da m vectorial con tikz
 \makeatletter
 
 % NUMERO
@@ -283,23 +304,21 @@
 % e imprimese no PDF con outro comando diferente. Esto da bastante
 % flexibilidade
 
-
-% Pa colorear o primeiro catacter de algo
+% Pa colorear o primeiro catacter de algo.
 % \coloreacaracter{color}{texto}
 \newcommand{\coloreacaracter}[2]{%
     {\color{#1}\directlua{tex.sprint(unicode.utf8.sub('#2',1,1))}}%
     \directlua{tex.sprint(unicode.utf8.sub('#2',2,-1))}%
 }
 
-% SE QUEREMOS RETOCAR ALGO, HAI QUE FACELO NOS SEGUINTES COMANDOS
-\Numero{0}
-\Data{Enero do 1900}
-\PrimeiroArtigo{Entrevista a Marie Curie}
-% \SegundoArtigo{Entrevista a JC}
-% \TerceiroArtigo{A fisica minte}
-\ImaxePortada{./cern.png}
-\definecolor{Resalte}{HTML}{ff0000}
-\definecolor{TextoEnResalte}{HTML}{000000}
+% En cada revista hai que usar estos comandos ao comezo.
+%
+% \Numero{0}
+% \Data{Enero do 1900}
+% \PrimeiroArtigo{Entrevista a Marie Curie}
+% \ImaxePortada{./cern.png}
+% \definecolor{Resalte}{HTML}{ff0000}
+% \definecolor{TextoEnResalte}{HTML}{000000}
 
 % Os comandos anteriores definen as variables. Pa mostralas no pdf hai que usar:
 %
@@ -310,5 +329,7 @@
 % \imprimePrimeiroArtigo  %
 % \imprimePrimeiroArtigo  % Nomes dos artigos principais.
 % \imprimeTerceiroArtigo  %
+% \color{Resalte}         Para colorear cousas ca cor específica de cada revista
 
+% :FACER: remirar estos conteos...
 \pagenumbering{arabic}\setcounter{page}{1}
