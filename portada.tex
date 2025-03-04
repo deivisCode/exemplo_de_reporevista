@@ -14,11 +14,11 @@
 \setlength\parindent{0pt}
 
 % TITULO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace*{3em}
+\vspace*{1em}
 {%
     \centering%
-    \FonteTitulo\fontsize{80pt}{0pt}\selectfont%
-    \coloreacaracter{Resalte}{\imprimeTitulo}\par%
+    \fontsize{70pt}{0pt}\selectfont%
+    \FormateaTitulo{Resalte}\par%
 }%
 \vspace*{4em}
 
@@ -34,7 +34,7 @@
 ]%
     {
         \fontsize{20pt}{0pt}\selectfont%
-        \color{TextoEnResalte}{\FonteInfo\imprimeNumero\hfill\imprimeData}\par%
+        \color{TextoEnResalte}\texttt{\imprimeNumero\hfill\imprimeData}\par%
     }%
 \end{tcolorbox}
 }
@@ -59,18 +59,3 @@
 % volvemos a cargar a xeometria que tiñamos no preambulo
 \restoregeometry
 \twocolumn
-
-% FONDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% este fondo vai aparecer en todas as páxinas ata que vexa o comando
-% \ClearShipoutPicture (que está na contraportada). Incluir o fondo fai a
-% compilacion bastante mais lenta
-\AddToShipoutPictureBG{
-    \put(0,0){
-        \parbox[b][\paperheight]{\paperwidth}{
-            \vfill
-            \centering
-            {\transparent{0.1}\includegraphics{./logos/botafumeiro.png}}
-            \vfill
-        }
-    }
-}

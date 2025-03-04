@@ -8,8 +8,18 @@
 }
 \onecolumn
 
-% Para deixar de poñer a imaxe de fondo
-\ClearShipoutPicture
+% FONDO %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\AddToShipoutPictureBG*{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{
+            \vfill
+            \centering
+            {\transparent{0.1}\includegraphics{./logos/botafumeiro.png}}
+            \vfill
+        }
+    }
+}
+% No caso de poñelo en todas as páxinas, pode pararse con \ClearShipoutPicture
 
 {% os textos de agradecemento e similares
 \centering
@@ -22,9 +32,11 @@
             tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
         \par%
     }%
-    \vspace*{5em}
-    \adforn{35}
-    \vspace*{5em}
+
+    \vspace*{5em}%
+    \adforn{35}%
+    \vspace*{5em}%
+
     {%
         \fontsize{16pt}{0pt}\selectfont%
         \textit{%
@@ -33,9 +45,11 @@
             tincidunt ut. Praesent nec tortor neque. Vestibulum eu scelerisque tellus.}%
         \par%
     }%
-    \vspace*{5em}
-    \adforn{35}
-    \vspace*{5em}
+
+    \vspace*{5em}%
+    \adforn{35}%
+    \vspace*{5em}%
+
     {%
         \fontsize{16pt}{0pt}\selectfont%
         \textit{%
@@ -60,10 +74,12 @@
 \begin{minipage}[c][5cm]{5cm}
         \hypersetup{urlcolor=black}
         \qrset{height = 4cm}%
-        % Que quede para a posteridade que rickrolleei a Celia con este QR
+        % Que quede para a posteridade que rickrolleei a Celia e a Sebas con este QR
         \qrcode{https://youtu.be/dQw4w9WgXcQ}
 \end{minipage}
+%
 \hfill % non se deben poñer liñas en branco arredor deste \hfill
+%
 \begin{minipage}[c]{0.4\linewidth}
     \centering
     Informacion de contacto\par

@@ -12,27 +12,23 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{revista}[2025/03/03 Clase para a revista de Fisica USC]
 
-\LoadClass[11pt,a4paper,twocolumn]{extarticle}
+\LoadClass[11pt,a4paper,twocolumn,twoside]{extarticle}
 
 % :FACER: buscar mellores tipografías
 % Tipo de letra. Cortesía de LuaLaTeX. É extremadamente fácil:
-\RequirePackage[no-math]{fontspec}
-\newfontfamily\FonteTitulo[
-    Path      = ./fontes/QualiType/,
-    Extension = .otf,
-    BoldFont  = *-Bold,
-]{QTBengal}
-\newfontfamily\FonteInfo[
-    Path      = ./fontes/LatinModernMono/,
+\RequirePackage{fontspec}
+\setmonofont[
+    Path = ./fontes/LatinModern/,
     Extension = .otf,
 ]{lmmono10-regular}
 \setmainfont[
-    Path           = ./fontes/CMUserif/,
-    Extension      = .ttf,
-    ItalicFont     = cmunti.ttf,
-    BoldFont       = cmunbx.ttf,
-    BoldItalicFont = cmunbi.ttf,
-]{cmunrm}
+    Path           = ./fontes/LatinModern/,
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    ItalicFont     = *-italic,
+    BoldFont       = *-bold,
+    BoldItalicFont = *-bolditalic,
+]{lmroman10}
 
 % Usar galego (como debe ser)
 \RequirePackage[galician]{babel}
@@ -117,6 +113,13 @@
 \RequirePackage{svrsymbols} % simbolos variados
 \RequirePackage{adforn}     %
 
+% este debe cargarse logo dos paquetes matematicos
+\RequirePackage{unicode-math}
+\setmathfont[
+    Path      = ./fontes/EulerMath/,
+    Extension = .otf,
+]{Euler-Math}
+
 % :FACER: facer o subtitulo opcional (con \NewDocumentCommand e \IfNoValueTF)
 % Un dos comandos máis importantes. Debe usarse ao comezo de cada artigo.
 \newcommand{\titular}[4]{%
@@ -131,12 +134,14 @@
     \twocolumn[%
         \begin{@twocolumnfalse} % desactivamos temporalmente as duas columnas
             \begin{center}
+                \vspace*{1em}
                 \noindent
                 {\color{Resalte}\Huge \textbf{#1}} \\
                 \vspace{3mm}
                 {\Large #2} \\
                 \vspace{3mm}
                 \textit{#4}
+                \vspace{3mm}
             \end{center}
         \end{@twocolumnfalse}
     ]
@@ -165,6 +170,32 @@
 % ESTILOS DE PÁXINA.
 % Estos estilos cambian os encabezados das páxinas dependendo dos artigos que
 % haxa.
+
+% O comando pa xerar o logo onde sexa, pode usarse con \fontsize
+\newcommand{\LogoM}{
+    \begin{tikzpicture}
+        \node[
+            shape     = circle,
+            draw      = Resalte,
+            fill      = Resalte,
+            text      = TextoEnResalte,
+            inner sep = 0pt,
+            radius    = 0.5,
+            inner sep = 1pt,
+        ]
+        at (0,0)
+        {$\vec{m}$};
+    \end{tikzpicture}
+}
+
+% esto e pa poñer o logo do momento no encabezado
+\renewcommand\headrule{
+    \vspace{-6pt}
+    \hrulefill
+    \raisebox{-15pt}
+    {\huge\quad\LogoM\quad}
+    \hrulefill
+}
 
 % artigos de DIVULGACION
 \fancypagestyle{divulgacion}{
@@ -273,7 +304,6 @@
 
 %% MACROS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% :FACER: deberiamos facer aqui o logo da m vectorial con tikz
 \makeatletter
 
 % NUMERO
@@ -294,6 +324,9 @@
 
 % TITULO REVISTA
 \newcommand{\imprimeTitulo}{MOMENTUM}
+\newcommand{\FormateaTitulo}[1]{%
+    {\color{#1}$\overrightarrow{\text{\textbf{M}}}$}\textbf{OMENTUM}%
+}
 
 % RUTA PARA A IMAXE DA PORTADA
 \def\ImaxePortada#1{\def\@ImaxePortada{#1}}
@@ -303,13 +336,6 @@
 % todos esos comandos teñen a info da revista. Gardase o valor nunha variable,
 % e imprimese no PDF con outro comando diferente. Esto da bastante
 % flexibilidade
-
-% Pa colorear o primeiro catacter de algo.
-% \coloreacaracter{color}{texto}
-\newcommand{\coloreacaracter}[2]{%
-    {\color{#1}\directlua{tex.sprint(unicode.utf8.sub('#2',1,1))}}%
-    \directlua{tex.sprint(unicode.utf8.sub('#2',2,-1))}%
-}
 
 % En cada revista hai que usar estos comandos ao comezo.
 %
